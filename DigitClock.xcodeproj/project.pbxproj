@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FED9EFB56C0DD82EA9028BE /* Pods_DigitClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF67E4E949E0C5A41C65B150 /* Pods_DigitClock.framework */; };
 		66D8D3451F1313E000B93226 /* DigitClockView.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D8D3441F1313E000B93226 /* DigitClockView.h */; };
 		66D8D3471F1313E000B93226 /* DigitClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D8D3461F1313E000B93226 /* DigitClockView.m */; };
 		66D8D3501F13203200B93226 /* Font.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D8D34E1F13203200B93226 /* Font.h */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0246C3648F4CD71C8F4A85E0 /* Pods-DigitClock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitClock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigitClock/Pods-DigitClock.debug.xcconfig"; sourceTree = "<group>"; };
+		47173E9F0AE6F27B1A0EE7E2 /* Pods-DigitClock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitClock.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigitClock/Pods-DigitClock.release.xcconfig"; sourceTree = "<group>"; };
 		66D8D3411F1313E000B93226 /* DigitClock.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigitClock.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D8D3441F1313E000B93226 /* DigitClockView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DigitClockView.h; sourceTree = "<group>"; };
 		66D8D3461F1313E000B93226 /* DigitClockView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DigitClockView.m; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		66D8D34F1F13203200B93226 /* Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Font.m; sourceTree = "<group>"; };
 		66D8D3531F132C4500B93226 /* DigitalDismay.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DigitalDismay.otf; sourceTree = "<group>"; };
 		66D8D3551F132C7400B93226 /* DS-Digital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-Digital.ttf"; sourceTree = "<group>"; };
+		BF67E4E949E0C5A41C65B150 /* Pods_DigitClock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigitClock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FED9EFB56C0DD82EA9028BE /* Pods_DigitClock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2902C015F864E4492887D573 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF67E4E949E0C5A41C65B150 /* Pods_DigitClock.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		66D8D3371F1313E000B93226 = {
 			isa = PBXGroup;
 			children = (
 				66D8D3431F1313E000B93226 /* DigitClock */,
 				66D8D3421F1313E000B93226 /* Products */,
+				92B12600052CF09BA0DEC40D /* Pods */,
+				2902C015F864E4492887D573 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +90,15 @@
 			name = Resource;
 			sourceTree = "<group>";
 		};
+		92B12600052CF09BA0DEC40D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0246C3648F4CD71C8F4A85E0 /* Pods-DigitClock.debug.xcconfig */,
+				47173E9F0AE6F27B1A0EE7E2 /* Pods-DigitClock.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -94,10 +118,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66D8D34B1F1313E000B93226 /* Build configuration list for PBXNativeTarget "DigitClock" */;
 			buildPhases = (
+				56FDB1E358F79EF058FAD4D2 /* [CP] Check Pods Manifest.lock */,
 				66D8D33C1F1313E000B93226 /* Sources */,
 				66D8D33D1F1313E000B93226 /* Frameworks */,
 				66D8D33E1F1313E000B93226 /* Headers */,
 				66D8D33F1F1313E000B93226 /* Resources */,
+				E20D3934E2715B1CD02B9F02 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,6 +178,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56FDB1E358F79EF058FAD4D2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E20D3934E2715B1CD02B9F02 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigitClock/Pods-DigitClock-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		66D8D33C1F1313E000B93226 /* Sources */ = {
@@ -257,6 +316,7 @@
 		};
 		66D8D34C1F1313E000B93226 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0246C3648F4CD71C8F4A85E0 /* Pods-DigitClock.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -273,6 +333,7 @@
 		};
 		66D8D34D1F1313E000B93226 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47173E9F0AE6F27B1A0EE7E2 /* Pods-DigitClock.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;

@@ -59,7 +59,7 @@
 }
 
 - (BOOL)hasConfigureSheet {
-    return NO;
+    return YES;
 }
 
 - (NSWindow*)configureSheet {
