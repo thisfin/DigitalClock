@@ -69,11 +69,11 @@
 		66296E291F14DD2100B7B42D /* DigitalClock */ = {
 			isa = PBXGroup;
 			children = (
-				66296E3A1F14E7D600B7B42D /* Resource */,
-				66296E341F14DDE600B7B42D /* DigitalClockView.swift */,
 				66296E2E1F14DD2100B7B42D /* Info.plist */,
+				66296E341F14DDE600B7B42D /* DigitalClockView.swift */,
 				66296E361F14E20600B7B42D /* Font.swift */,
 				66296E381F14E64B00B7B42D /* SettingWindow.swift */,
+				66296E3A1F14E7D600B7B42D /* Resource */,
 			);
 			path = DigitalClock;
 			sourceTree = "<group>";
@@ -313,6 +313,7 @@
 		};
 		66296E321F14DD2100B7B42D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC01BD5539ED93CFA881612C /* Pods-DigitalClock.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -331,6 +332,7 @@
 		};
 		66296E331F14DD2100B7B42D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 391389F007D18CAA16EAC197 /* Pods-DigitalClock.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
