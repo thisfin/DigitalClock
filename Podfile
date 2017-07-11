@@ -4,7 +4,6 @@ use_frameworks!
 
 def pods
     pod 'Masonry'
-    pod 'WYKit',    :path => '~/Documents/git/WYKit'
 end
 
 target 'DigitClock' do
