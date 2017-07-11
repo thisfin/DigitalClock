@@ -30,7 +30,7 @@ class Font {
     }
 
     func fontOfSize(fontSize: CGFloat, fontName: String) -> NSFont {
-        if let font = NSFont.init(name: fontName, size: fontSize) {
+        if let font = NSFont(name: fontName, size: fontSize) {
             return font
         }
         return NSFont.systemFont(ofSize: fontSize)

@@ -1,9 +1,9 @@
 
 platform :osx, '10.12'
-#use_frameworks!
+use_frameworks!
 
 def pods
-    pod 'Masonry'
+    pod 'SnapKit'
     #pod 'WYKit',    :path => '~/Documents/work/git/WYKit'
 end
 

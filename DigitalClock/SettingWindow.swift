@@ -7,6 +7,8 @@
 //
 
 import AppKit
+import SnapKit
+
 
 class SettingWindow: NSWindow {
     private let textField = NSTextField(labelWithString: "10:10")
@@ -20,6 +22,11 @@ class SettingWindow: NSWindow {
 
     private func getContentView() -> NSView {
         let view = NSView.init(frame: NSMakeRect(0, 0, 400, 300))
+
+//        let support24hButton = NSButton.
+
+        let fontColorButton = NSButton.init()
+        view.addSubview(fontColorButton)
 
         return view
     }

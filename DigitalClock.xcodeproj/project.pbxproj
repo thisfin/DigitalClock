@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55E8AB3B3DE2E10EF737D909 /* libPods-DigitalClock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A931DB84BF37F64F8C8BC51 /* libPods-DigitalClock.a */; };
 		66296E351F14DDE600B7B42D /* DigitalClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66296E341F14DDE600B7B42D /* DigitalClockView.swift */; };
 		66296E371F14E20600B7B42D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66296E361F14E20600B7B42D /* Font.swift */; };
 		66296E391F14E64B00B7B42D /* SettingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66296E381F14E64B00B7B42D /* SettingWindow.swift */; };
 		66296F021F14E81200B7B42D /* DigitalDismay.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66296F001F14E81200B7B42D /* DigitalDismay.otf */; };
 		66296F031F14E81200B7B42D /* DS-Digital.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66296F011F14E81200B7B42D /* DS-Digital.ttf */; };
+		AA3D886F33FD14CB5D773B3C /* Pods_DigitalClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD32E20599C176ED0F84AB3 /* Pods_DigitalClock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		391389F007D18CAA16EAC197 /* Pods-DigitalClock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitalClock.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigitalClock/Pods-DigitalClock.release.xcconfig"; sourceTree = "<group>"; };
-		4A931DB84BF37F64F8C8BC51 /* libPods-DigitalClock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DigitalClock.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66296E271F14DD2100B7B42D /* DigitalClock.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigitalClock.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		66296E2E1F14DD2100B7B42D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66296E341F14DDE600B7B42D /* DigitalClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalClockView.swift; sourceTree = "<group>"; };
@@ -26,6 +25,7 @@
 		66296F001F14E81200B7B42D /* DigitalDismay.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DigitalDismay.otf; sourceTree = "<group>"; };
 		66296F011F14E81200B7B42D /* DS-Digital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-Digital.ttf"; sourceTree = "<group>"; };
 		AC01BD5539ED93CFA881612C /* Pods-DigitalClock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitalClock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigitalClock/Pods-DigitalClock.debug.xcconfig"; sourceTree = "<group>"; };
+		BDD32E20599C176ED0F84AB3 /* Pods_DigitalClock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigitalClock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55E8AB3B3DE2E10EF737D909 /* libPods-DigitalClock.a in Frameworks */,
+				AA3D886F33FD14CB5D773B3C /* Pods_DigitalClock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +43,7 @@
 		0E1BC2FC6EB98AB1A4723E94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A931DB84BF37F64F8C8BC51 /* libPods-DigitalClock.a */,
+				BDD32E20599C176ED0F84AB3 /* Pods_DigitalClock.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
