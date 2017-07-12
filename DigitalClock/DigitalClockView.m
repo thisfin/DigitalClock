@@ -14,6 +14,10 @@
 #import "SettingWindow.h"
 
 
+NSString *const kDefaultsSupport24h = @"support24h";
+NSString *const kDefaultsFontColor = @"fontColor";
+NSString *const kDefaultsBackFontColor = @"backFontColor";
+
 @implementation DigitalClockView {
     NSTextField *_backDateTextField;
     NSTextField *_dateTextField;
@@ -34,14 +38,14 @@
     if (self) {
         [self setAnimationTimeInterval:1/30.0];
 
+        [[self getDefaults] registerDefaults:@{kDefaultsSupport24h: @NO,
+                                               kDefaultsFontColor: [NSArchiver archivedDataWithRootObject:[NSColor greenColor]], // NSColor 不可序列化, 封装一下
+                                               kDefaultsBackFontColor: [NSArchiver archivedDataWithRootObject:[[NSColor greenColor] colorWithAlphaComponent:0.08]]}];
         _height = frame.size.height / 2;
         if (frame.size.width < frame.size.height) {
             _height = frame.size.width / 3.5;
         }
-
-        NSLog(@"%lf", _height);
-        _fontColor = NSColor.greenColor;
-        _backFontColor = [_fontColor colorWithAlphaComponent:0.08];
+        [self getDefaultsValue];
 
         [self initTimeTextField];
         [self initDateTextFiel];
@@ -69,6 +73,7 @@
 }
 
 - (void)animateOneFrame {
+    [self setDate:[[NSDate alloc] init]];
     return;
 }
 
@@ -77,11 +82,12 @@
 }
 
 - (NSWindow*)configureSheet {
-    NSLog(@"%@", _settingWindow);
-    if (!_settingWindow || ![_settingWindow isKindOfClass:SettingWindow.class]) {
+    if (!_settingWindow) {
         _settingWindow = [[SettingWindow alloc] init];
         _settingWindow.parentView = self;
+        _settingWindow.releasedWhenClosed = false;
     }
+    [_settingWindow setDefaults];
     return _settingWindow;
 }
 
@@ -98,10 +104,11 @@
 
 - (void)setDate:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy MM dd";
+    dateFormatter.dateFormat = @"yyyy  MM  dd";
     _dateTextField.stringValue = [dateFormatter stringFromDate:date];
 
     _timeTextField.attributedStringValue = ({
+        dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]; // 不设置 locale 的话, 12 hour 不生效
         dateFormatter.dateFormat = _isSupport24h ? @"HH:mm ss" : @"hh:mm ss";
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[dateFormatter stringFromDate:date]];
         [attributedString addAttribute:NSFontAttributeName value:[[Font shareInstance] fontOfSize:_height name:@"DigitalDismay"] range:NSMakeRange(0, 5)];
@@ -156,14 +163,14 @@
 
 - (void)initDateTextFiel {
     _backDateTextField = ({
-        NSTextField *textField = [NSTextField labelWithString:@"8888 88 88"];
+        NSTextField *textField = [NSTextField labelWithString:@"8888  88  88"];
         textField.font = [[Font shareInstance] fontOfSize:_height / 3 name:@"DigitalDismay"];
         textField.alignment = NSTextAlignmentCenter;
         textField;
     });
     [self addSubview:_backDateTextField];
     [_backDateTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(_backTimeTextField.mas_top).offset(50);
+        make.bottom.equalTo(_backTimeTextField.mas_top);
         make.left.equalTo(_backTimeTextField);
     }];
 
@@ -201,7 +208,7 @@
     [weekView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_backTimeTextField);
         make.right.equalTo(_backTimeTextField);
-        make.top.equalTo(_backTimeTextField.mas_bottom).offset(0 - 50);
+        make.top.equalTo(_backTimeTextField.mas_bottom);
     }];
 
     NSArray<NSString *> *array = @[@"SUN", @"MON", @"TUE", @"WED", @"THU", @"FRI", @"SAT"];
@@ -210,8 +217,6 @@
         [_weekTextFields addObject:({
             NSTextField *textField = [NSTextField labelWithString:obj];
             textField.font = [[Font shareInstance] fontOfSize:_height / 6 name:@"DS-Digital"];
-            textField.backgroundColor = NSColor.clearColor;
-            textField.textColor = NSColor.blueColor;
             textField.alignment = NSTextAlignmentCenter;
             [weekView addSubview:textField];
             textField;
@@ -220,13 +225,29 @@
     [_weekTextFields mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weekView);
     }];
-    [_weekTextFields mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:50 leadSpacing:0 tailSpacing:0];
+    [_weekTextFields mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
     [weekView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(_weekTextFields[0]);
     }];
 }
 
 - (void)settingEnd {
-    [NSApp endSheet:_settingWindow];
+    [self getDefaultsValue];
+    [self setColor];
+    [self setDate:[[NSDate alloc] init]];
+    [[NSApplication sharedApplication] endSheet:_settingWindow];
+}
+
+- (ScreenSaverDefaults *)getDefaults {
+    NSString *identifier = [NSBundle bundleForClass:DigitalClockView.class].bundleIdentifier;
+    ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:identifier];
+    return defaults;
+}
+
+- (void)getDefaultsValue {
+    ScreenSaverDefaults *defaults = [self getDefaults];
+    _isSupport24h = [defaults boolForKey:kDefaultsSupport24h];
+    _fontColor = [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:kDefaultsFontColor]];
+    _backFontColor = [NSUnarchiver unarchiveObjectWithData:[defaults valueForKey:kDefaultsBackFontColor]];
 }
 @end

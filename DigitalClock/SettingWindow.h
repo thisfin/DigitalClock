@@ -11,5 +11,6 @@
 @class DigitalClockView;
 
 @interface SettingWindow : NSWindow
+- (void)setDefaults;
 @property (nonatomic, weak) DigitalClockView *parentView;
 @end

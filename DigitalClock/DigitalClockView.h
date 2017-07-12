@@ -9,6 +9,11 @@
 #import <ScreenSaver/ScreenSaver.h>
 
 
+extern NSString *const kDefaultsSupport24h;
+extern NSString *const kDefaultsFontColor;
+extern NSString *const kDefaultsBackFontColor;
+
 @interface DigitalClockView : ScreenSaverView
 - (void)settingEnd;
+- (ScreenSaverDefaults *)getDefaults;
 @end

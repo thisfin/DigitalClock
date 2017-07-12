@@ -14,6 +14,7 @@
 
 
 @implementation SettingWindow {
+    NSButton *_support24hButton;
     NSTextField *_textField;
     NSTextField *_backTextField;
 }
@@ -21,18 +22,23 @@
 - (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
     if (self = [super initWithContentRect:NSMakeRect(0, 0, 400, 240) styleMask:style backing:bufferingType defer:flag]) {
         self.contentView = [self getContentView];
-
-        NSLog(@"initWithContentRect");
     }
     return self;
+}
+
+- (void)setDefaults {
+    ScreenSaverDefaults *defaults = [_parentView getDefaults];
+    _support24hButton.state = [defaults boolForKey:kDefaultsSupport24h] ? NSOnState : NSOffState;
+    _textField.textColor = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:kDefaultsFontColor]];
+    _backTextField.textColor = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:kDefaultsBackFontColor]];
 }
 
 - (NSView *)getContentView {
     NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 400, 300)];
 
-    NSButton *support24hButton = [NSButton checkboxWithTitle:@"support 24h" target:self action:@selector(support24hButtonClicked:)];
-    [view addSubview:support24hButton];
-    [support24hButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    _support24hButton = [NSButton checkboxWithTitle:@"support 24h" target:self action:@selector(support24hButtonClicked:)];
+    [view addSubview:_support24hButton];
+    [_support24hButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(view).offset(30);
         make.left.equalTo(view).offset(30);
     }];
@@ -40,8 +46,8 @@
     NSButton *fontColorButton = [NSButton buttonWithTitle:@"font color" target:self action:@selector(fontColorButtonClicked:)];
     [view addSubview:fontColorButton];
     [fontColorButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(support24hButton.mas_bottom).offset(30);
-        make.left.equalTo(support24hButton);
+        make.top.equalTo(_support24hButton.mas_bottom).offset(30);
+        make.left.equalTo(_support24hButton);
     }];
 
     NSButton *fontShadowColorButton = [NSButton buttonWithTitle:@"font shadow color" target:self action:@selector(fontShadowColorButtonClicked:)];
@@ -62,7 +68,6 @@
 
     _backTextField = [NSTextField labelWithString:@"88:88"];
     _backTextField.font = [[Font shareInstance] fontOfSize:50 name:@"DigitalDismay"];
-    _backTextField.textColor = [[NSColor blueColor] colorWithAlphaComponent:0.08];
     [fontView addSubview:_backTextField];
     [_backTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(fontView).offset(10);
@@ -71,7 +76,6 @@
 
     _textField = [NSTextField labelWithString:@"10:10"];
     _textField.font = [[Font shareInstance] fontOfSize:50 name:@"DigitalDismay"];
-    _textField.textColor = [NSColor blueColor];
     [fontView addSubview:_textField];
     [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(fontView).offset(10);
@@ -84,9 +88,9 @@
     }];
 
     NSButton __block *lastButton;
-    NSArray<NSString *> *colors = @[@"绿", @"蓝", @"白"];
+    NSArray<NSString *> *colors = @[@"green", @"blue", @"white"];
     [colors enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSButton *button = [NSButton buttonWithTitle:[NSString stringWithFormat:@"预设%@", obj] target:self action:@selector(colorButtonClicked:)];
+        NSButton *button = [NSButton buttonWithTitle:[NSString stringWithFormat:@"%@", obj] target:self action:@selector(colorButtonClicked:)];
         button.tag = idx;
         [view addSubview:button];
         [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -111,8 +115,13 @@
 }
 
 - (void)backButtonclicked:(NSButton *)sender {
-    if (self.parentView) {
-        [self.parentView settingEnd];
+    if (_parentView) {
+        ScreenSaverDefaults *defaults = [_parentView getDefaults];
+        [defaults setBool:(_support24hButton.state == NSOnState) forKey:kDefaultsSupport24h];
+        [defaults setObject:[NSArchiver archivedDataWithRootObject:_textField.textColor] forKey:kDefaultsFontColor];
+        [defaults setObject:[NSArchiver archivedDataWithRootObject:_backTextField.textColor] forKey:kDefaultsBackFontColor];
+        [defaults synchronize];
+        [_parentView settingEnd];
     }
 }
 
@@ -134,7 +143,6 @@
     panel.showsAlpha = YES;
     [panel makeKeyAndOrderFront:[NSApp mainWindow]];
 }
-
 
 - (void)colorButtonClicked:(NSButton *)sender {
     switch (sender.tag) {
